@@ -96,6 +96,7 @@ calibre
 irssi
 nmap
 ansible
+ipython
 #chromium, skype, vlc, flashplugin, MultiBitHD, virtualbox, firejail
 %end
 
