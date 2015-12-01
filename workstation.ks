@@ -82,6 +82,7 @@ text
 @xfce-office
 @development-tools
 gnome-keyring-pam
+lightdm
 system-config-printer
 openssh-server
 vim
@@ -98,6 +99,19 @@ nmap
 ansible
 ipython
 #chromium, skype, vlc, flashplugin, MultiBitHD, virtualbox, firejail
+%end
+
+# Post-Installation Script
+# https://docs.fedoraproject.org/en-US/Fedora/23/html/Installation_Guide/sect-kickstart-postinstall.html
+%post
+# create /etc/sysconfig/desktop (needed for installation)
+cat > /etc/sysconfig/desktop <<EOF
+PREFERRED=/usr/bin/startxfce4
+DISPLAYMANAGER=/usr/sbin/lightdm
+EOF
+
+# Enable sshd
+systemctl enable sshd.service
 %end
 
 # Reboot After Installation
