@@ -23,7 +23,7 @@ Designed to:
 
 ### Use
 * Clone and enter this repository with:
-  * `git clone http://github.com/sinner-/kickstart-fedora-workstation`.
+  * `git clone https://github.com/sinner-/kickstart-fedora-workstation`.
   * `cd kickstart-fedora-workstation`.
 * Configure the LUKS full disk encryption passphrase:
   * `sed -i 's/fdepassphrase/YOUR_FULL_DISK_ENCRYPTION_PASSPHRASE/' workstation.ks`.
@@ -36,6 +36,10 @@ Designed to:
   * `sed -i 's/^timezone/timezone Yourcountry\/Yourcity/' workstation.ks`.
 * Upload the kickstart file to your webserver. I normally use another local linux machine:
   * `python -m SimpleHTTPServer` (starts on port 8000).
+* *SECURITY REMINDER:*
+  * *FDE PASSWORD AND USER PASSWORD WILL BE PRESENT IN THE FILE IN PLAINTEXT*
+  * *KICKSTART FILE WILL BE ACCESSIBLE FROM THE WEBSERVER*
+  * *DO NOT USE THIS PROJECT UNLESS YOU ARE CAPABLE OF SECURING THIS SENSITIVE INFO*
 * Boot Fedora Workstation netinst on the target install machine.
 * At the boot screen, press UP to select the "install without verify" option and then TAB.
 * Append the kickstart directive to the end of the boot string:
