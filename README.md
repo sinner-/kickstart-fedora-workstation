@@ -4,6 +4,9 @@
 
 Part of an overall project to adopt the "cattle" approach to my personal computing.
 
+Assuming the distribution does its job correctly, I can use this project along with
+good backups in my homedir to have a consistent environment on any installed target.
+
 Designed to:
 
 * Deploy Fedora (tested on F23) with a repeatable and automated method.
@@ -27,9 +30,10 @@ Designed to:
 * Configure the builtin users password:
   * `sed -i 's/userpassword/YOUR_USER_PASSWORD/' workstation.ks`.
 * If you're not me you will probably also want to run:
-  * `sed -i 's/sina/YOUR_NAME/' workstation.ks`.
-* I configure the hostname to be "sina-laptop", if you want something else:
   * `sed -i 's/sina-laptop/YOUR_DESIRED_HOSTNAME/' workstation.ks`.
+    * (run this command before the next one to avoid sed mixups)
+  * `sed -i 's/sina/YOUR_NAME/' workstation.ks`.
+  * `sed -i 's/^timezone/timezone Yourcountry\/Yourcity/' workstation.ks`.
 * Upload the kickstart file to your webserver. I normally use another local linux machine:
   * `python -m SimpleHTTPServer` (starts on port 8000).
 * Boot Fedora Workstation netinst on the target install machine.
