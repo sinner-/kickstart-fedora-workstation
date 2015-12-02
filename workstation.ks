@@ -79,7 +79,6 @@ text
 @xfce-apps
 @xfce-extra-plugins
 @xfce-media
-@xfce-office
 @development-tools
 gnome-keyring-pam
 lightdm
@@ -96,9 +95,9 @@ duplicity
 calibre
 irssi
 nmap
+tcpdump
 ansible
 ipython
-#chromium, skype, vlc, flashplugin, MultiBitHD, virtualbox, firejail
 %end
 
 # Post-Installation Script
@@ -110,8 +109,23 @@ PREFERRED=/usr/bin/startxfce4
 DISPLAYMANAGER=/usr/sbin/lightdm
 EOF
 
-# Enable sshd
+# Enable services
 systemctl enable sshd.service
+
+# Disable services
+systemctl disable avahi-daemon.socket
+systemctl disable nfs-client.target
+systemctl disable rpcbind.socket
+systemctl disable iscsiuio.socket
+systemctl disable iscsid.socket
+systemctl disable nfs-config.service
+systemctl disable iscsi-shutdown.service
+systemctl disable gssproxy.service
+systemctl disable bluetooth.service
+systemctl disable proc-fs-nfsd.mount
+systemctl disable var-lib-nfs-rpc_pipefs.mount
+systemctl disable libvirtd.service
+systemctl disable avahi-daemon.service
 %end
 
 # Reboot After Installation
