@@ -2,6 +2,7 @@
 # https://docs.fedoraproject.org/en-US/Fedora/23/html/Installation_Guide/appe-kickstart-syntax-reference.html#sect-kickstart-commands-install
 install
 url --url=http://download.fedoraproject.org/pub/fedora/linux/releases/23/Everything/x86_64/os
+url --url=http://download.fedoraproject.org/pub/fedora/linux/updates/23/x86_64/
 
 # zerombr
 # https://docs.fedoraproject.org/en-US/Fedora/23/html/Installation_Guide/sect-kickstart-commands-zerombr.html
@@ -64,6 +65,7 @@ text
 # Package Selection
 # https://docs.fedoraproject.org/en-US/Fedora/23/html/Installation_Guide/sect-kickstart-packages.html
 %packages
+-mlocate
 @base-x
 @core
 @firefox
