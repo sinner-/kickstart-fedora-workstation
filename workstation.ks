@@ -2,12 +2,14 @@
 # https://docs.fedoraproject.org/en-US/Fedora/23/html/Installation_Guide/appe-kickstart-syntax-reference.html#sect-kickstart-commands-install
 install
 url --url="http://download.fedoraproject.org/pub/fedora/linux/releases/23/Everything/x86_64/os"
-url --url="http://download.fedoraproject.org/pub/fedora/linux/updates/23/x86_64/"
-repo --name=rpmfusion-free --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-23&arch=x86_64" --includepkgs=rpmfusion-free-release --install
-repo --name=rpmfusion-free-updates --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-23&arch=x86_64" --includepkgs=rpmfusion-free-release --install
-repo --name=rpmfusion-nonfree --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-23&arch=x86_64" --includepkgs=rpmfusion-nonfree-release --install
-repo --name=rpmfusion-nonfree-updates --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-23&arch=x86_64" --includepkgs=rpmfusion-nonfree-release --install
-repo --name=google-chrome --baseurl="http://dl.google.com/linux/chrome/rpm/stable/x86_64" --install
+repo --name=fedora-updates --baseurl="http://download.fedoraproject.org/pub/fedora/linux/updates/23/x86_64" --cost=0
+repo --name=rpmfusion-free --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-23&arch=x86_64" --includepkgs=rpmfusion-free-release
+repo --name=rpmfusion-free-updates --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-23&arch=x86_64" --includepkgs=rpmfusion-free-release
+repo --name=rpmfusion-nonfree --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-23&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
+repo --name=rpmfusion-nonfree-updates --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-23&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
+repo --name=google-chrome --baseurl="http://dl.google.com/linux/chrome/rpm/stable/x86_64"
+repo --name=fedora-virtualbox --baseurl="http://download.virtualbox.org/virtualbox/rpm/fedora/23/x86_64"
+repo --name=adobe-flash --baseurl="http://linuxdownload.adobe.com/linux/x86_64"
 
 # zerombr
 # https://docs.fedoraproject.org/en-US/Fedora/23/html/Installation_Guide/sect-kickstart-commands-zerombr.html
@@ -71,22 +73,23 @@ text
 # https://docs.fedoraproject.org/en-US/Fedora/23/html/Installation_Guide/sect-kickstart-packages.html
 %packages
 -mlocate
-@base-x
 @core
+@standard
+@hardware-support
+@guest-desktop-agents
+@base-x
 @firefox
 @fonts
-@guest-desktop-agents
-@hardware-support
 @libreoffice
 @multimedia
 @networkmanager-submodules
 @printing
-@workstation-product
 @xfce-desktop
 @xfce-apps
 @xfce-extra-plugins
 @xfce-media
 @development-tools
+kernel-devel
 gnome-keyring-pam
 lightdm
 system-config-printer
@@ -107,16 +110,47 @@ ansible
 ipython
 vlc
 google-chrome-stable
+akmods
+kmod-VirtualBox
+akmod-VirtualBox
+VirtualBox
+flash-plugin
 %end
 
-# Post-Installation Script
-# https://docs.fedoraproject.org/en-US/Fedora/23/html/Installation_Guide/sect-kickstart-postinstall.html
 %post
-# create /etc/sysconfig/desktop (needed for installation)
-cat > /etc/sysconfig/desktop <<EOF
-PREFERRED=/usr/bin/startxfce4
-DISPLAYMANAGER=/usr/sbin/lightdm
+# Persist extra repos and import keys.
+cat << EOF > /etc/yum.repos.d/google-chrome.repo
+[google-chrome]
+name=google-chrome
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
+rpm --import https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
+
+rpm -ivh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-23.noarch.rpm
+rpm -ivh http://download1.rpmfusion.org/free/fedora/rpmfusion-nonfree-release-23.noarch.rpm
+
+cat << EOF > /etc/yum.repos.d/fedora-virtualbox.repo
+[virtualbox]
+name=VirtualBox
+baseurl=http://download.virtualbox.org/virtualbox/rpm/fedora/23/x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/oracle_vbox.asc
+EOF
+wget -q -O /etc/pki/rpm-gpg/oracle_vbox.asc https://www.virtualbox.org/download/oracle_vbox.asc
+
+# Harden sshd options
+echo "" > /etc/ssh/sshd_config
+
+# Compile VirtualBox kernel module
+akmods
 
 # Enable services
 systemctl enable sshd.service
@@ -133,13 +167,6 @@ systemctl disable gssproxy.service
 systemctl disable bluetooth.service
 systemctl disable proc-fs-nfsd.mount
 systemctl disable var-lib-nfs-rpc_pipefs.mount
-systemctl disable libvirtd.service
-systemctl disable avahi-daemon.service
-
-#Install Adobe Flash Plugin
-rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
-dnf install flash-plugin
 %end
 
 # Reboot After Installation
