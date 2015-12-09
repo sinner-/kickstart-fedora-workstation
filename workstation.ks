@@ -3,6 +3,10 @@
 install
 url --url=http://download.fedoraproject.org/pub/fedora/linux/releases/23/Everything/x86_64/os
 url --url=http://download.fedoraproject.org/pub/fedora/linux/updates/23/x86_64/
+repo --name=rpmfusion-free --baseurl=http://download1.rpmfusion.org/free/fedora/releases/23/Everything/x86_64/os
+repo --name=rpmfusion-free-updates --baseurl=http://download1.rpmfusion.org/free/fedora/updates/23/x86_64
+repo --name=rpmfusion-non-free  --baseurl=http://download1.rpmfusion.org/nonfree/fedora/releases/23/Everything/x86_64/os
+repo --name=rpmfusion-non-free-updates --baseurl=http://download1.rpmfusion.org/nonfree/fedora/updates/23/x86_64
 
 # zerombr
 # https://docs.fedoraproject.org/en-US/Fedora/23/html/Installation_Guide/sect-kickstart-commands-zerombr.html
@@ -100,6 +104,7 @@ nmap
 tcpdump
 ansible
 ipython
+vlc
 %end
 
 # Post-Installation Script
