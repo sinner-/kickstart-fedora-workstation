@@ -1,13 +1,13 @@
 # Configure installation method
 # https://docs.fedoraproject.org/en-US/Fedora/23/html/Installation_Guide/appe-kickstart-syntax-reference.html#sect-kickstart-commands-install
 install
-url --url=http://download.fedoraproject.org/pub/fedora/linux/releases/23/Everything/x86_64/os
-url --url=http://download.fedoraproject.org/pub/fedora/linux/updates/23/x86_64/
-repo --name=rpmfusion-free --baseurl=http://download1.rpmfusion.org/free/fedora/releases/23/Everything/x86_64/os
-repo --name=rpmfusion-free-updates --baseurl=http://download1.rpmfusion.org/free/fedora/updates/23/x86_64
-repo --name=rpmfusion-non-free  --baseurl=http://download1.rpmfusion.org/nonfree/fedora/releases/23/Everything/x86_64/os
-repo --name=rpmfusion-non-free-updates --baseurl=http://download1.rpmfusion.org/nonfree/fedora/updates/23/x86_64
-repo --name=google-chrome --baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+url --url="http://download.fedoraproject.org/pub/fedora/linux/releases/23/Everything/x86_64/os"
+url --url="http://download.fedoraproject.org/pub/fedora/linux/updates/23/x86_64/"
+repo --name=rpmfusion-free --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-23&arch=x86_64" --includepkgs=rpmfusion-free-release --install
+repo --name=rpmfusion-free-updates --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-23&arch=x86_64" --includepkgs=rpmfusion-free-release --install
+repo --name=rpmfusion-nonfree --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-23&arch=x86_64" --includepkgs=rpmfusion-nonfree-release --install
+repo --name=rpmfusion-nonfree-updates --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-23&arch=x86_64" --includepkgs=rpmfusion-nonfree-release --install
+repo --name=google-chrome --baseurl="http://dl.google.com/linux/chrome/rpm/stable/x86_64" --install
 
 # zerombr
 # https://docs.fedoraproject.org/en-US/Fedora/23/html/Installation_Guide/sect-kickstart-commands-zerombr.html
