@@ -135,6 +135,11 @@ systemctl disable proc-fs-nfsd.mount
 systemctl disable var-lib-nfs-rpc_pipefs.mount
 systemctl disable libvirtd.service
 systemctl disable avahi-daemon.service
+
+#Install Adobe Flash Plugin
+rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
+dnf install flash-plugin
 %end
 
 # Reboot After Installation
