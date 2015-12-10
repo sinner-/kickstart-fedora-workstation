@@ -108,6 +108,7 @@ nmap
 tcpdump
 ansible
 ipython
+thunderbird
 vlc
 google-chrome-stable
 akmods
@@ -115,8 +116,28 @@ kmod-VirtualBox
 akmod-VirtualBox
 VirtualBox
 flash-plugin
+
+#skype deps
+alsa-lib.i686
+fontconfig.i686
+freetype.i686
+glib2.i686
+libSM.i686
+libXScrnSaver.i686
+libXi.i686
+libXrandr.i686
+libXrender.i686
+libXv.i686
+libstdc++.i686
+pulseaudio-libs.i686
+qt.i686
+qt-x11.i686
+zlib.i686
+qtwebkit.i686
 %end
 
+# Post-installation Script
+# https://docs.fedoraproject.org/en-US/Fedora/23/html/Installation_Guide/sect-kickstart-postinstall.html
 %post
 # Persist extra repos and import keys.
 cat << EOF > /etc/yum.repos.d/google-chrome.repo
