@@ -116,6 +116,7 @@ kmod-VirtualBox
 akmod-VirtualBox
 VirtualBox
 flash-plugin
+noip
 
 #skype deps
 alsa-lib.i686
@@ -175,6 +176,7 @@ akmods
 
 # Enable services
 systemctl enable sshd.service
+systemctl enable noip.service
 
 # Disable services
 systemctl disable avahi-daemon.socket
