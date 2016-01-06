@@ -111,12 +111,10 @@ ipython
 thunderbird
 vlc
 google-chrome-stable
-akmods
-kmod-VirtualBox
-akmod-VirtualBox
 VirtualBox
 flash-plugin
 noip
+dkms
 
 #skype deps
 alsa-lib.i686
@@ -170,9 +168,6 @@ wget -q -O /etc/pki/rpm-gpg/oracle_vbox.asc https://www.virtualbox.org/download/
 
 # Harden sshd options
 echo "" > /etc/ssh/sshd_config
-
-# Compile VirtualBox kernel module
-akmods
 
 # Enable services
 systemctl enable sshd.service
