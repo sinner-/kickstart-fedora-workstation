@@ -115,6 +115,7 @@ VirtualBox
 flash-plugin
 noip
 dkms
+android-tools
 
 #skype deps
 alsa-lib.i686
