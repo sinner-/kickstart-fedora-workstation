@@ -116,6 +116,7 @@ flash-plugin
 noip
 dkms
 android-tools
+xpra
 
 #skype deps
 alsa-lib.i686
