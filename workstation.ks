@@ -117,6 +117,7 @@ noip
 dkms
 android-tools
 xpra
+calc
 
 #skype deps
 alsa-lib.i686
