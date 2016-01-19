@@ -118,6 +118,7 @@ dkms
 android-tools
 xpra
 calc
+gitflow
 
 #skype deps
 alsa-lib.i686
