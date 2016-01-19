@@ -119,6 +119,8 @@ android-tools
 xpra
 calc
 gitflow
+gstreamer-plugins-ugly
+gstreamer1-plugins-ugly
 
 #skype deps
 alsa-lib.i686
