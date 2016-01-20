@@ -175,6 +175,12 @@ wget -q -O /etc/pki/rpm-gpg/oracle_vbox.asc https://www.virtualbox.org/download/
 # Harden sshd options
 echo "" > /etc/ssh/sshd_config
 
+
+echo "filetype plugin indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab" > /home/sina/.vimrc
+
 # Enable services
 systemctl enable sshd.service
 systemctl enable noip.service
