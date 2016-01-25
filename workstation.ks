@@ -97,7 +97,6 @@ openssh-server
 vim
 NetworkManager-openvpn-gnome
 keepassx
-R
 redshift-gtk
 gimp
 gnucash
@@ -107,7 +106,6 @@ irssi
 nmap
 tcpdump
 ansible
-ipython
 thunderbird
 vlc
 google-chrome-stable
