@@ -119,6 +119,7 @@ calc
 gitflow
 gstreamer-plugins-ugly
 gstreamer1-plugins-ugly
+rpmconf
 %end
 
 # Post-installation Script
