@@ -120,6 +120,7 @@ gitflow
 gstreamer-plugins-ugly
 gstreamer1-plugins-ugly
 rpmconf
+strace
 %end
 
 # Post-installation Script
