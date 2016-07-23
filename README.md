@@ -9,7 +9,7 @@ good backups in my homedir to have a consistent environment on any installed tar
 
 Designed to:
 
-* Deploy Fedora (tested on F23) with a repeatable and automated method.
+* Deploy Fedora (tested on F24) with a repeatable and automated method.
 * Provide a single source of truth for the software I like to use.
 * Encapsulate any optimisations/tricks I like to apply.
 
@@ -40,6 +40,7 @@ Designed to:
   * *FDE PASSWORD AND USER PASSWORD WILL BE PRESENT IN THE FILE IN PLAINTEXT*
   * *KICKSTART FILE WILL BE ACCESSIBLE FROM THE WEBSERVER*
   * *DO NOT USE THIS PROJECT UNLESS YOU ARE CAPABLE OF SECURING THIS SENSITIVE INFO*
+* Install Fedora Workstation netinst to a usb with `dd if=netinst.iso of=/dev/sdx bs=1M`.
 * Boot Fedora Workstation netinst on the target install machine.
 * At the boot screen, press UP to select the "install without verify" option and then TAB.
 * Append the kickstart directive to the end of the boot string:
