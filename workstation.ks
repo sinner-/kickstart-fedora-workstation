@@ -147,6 +147,11 @@ systemctl enable noip.service
 
 # Disable services
 systemctl disable bluetooth.service
+systemctl disable avahi-daemon
+systemctl disable abrtd 
+systemctl disable abrt-oops abrt-ccpp
+systemctl disable abrt-ccpp
+systemctl disable abrt-xorg
 %end
 
 # Reboot After Installation
