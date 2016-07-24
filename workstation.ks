@@ -115,6 +115,7 @@ gstreamer1-plugins-ugly
 rpmconf
 strace
 wireshark
+ffmpeg
 %end
 
 # Post-installation Script
