@@ -116,6 +116,7 @@ rpmconf
 strace
 wireshark
 ffmpeg
+gvfs-mtp
 %end
 
 # Post-installation Script
