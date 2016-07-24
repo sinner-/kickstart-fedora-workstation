@@ -131,6 +131,9 @@ gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
 rpm --import https://dl-ssl.google.com/linux/linux_signing_key.pub
 
+rpm -ivh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-24.noarch.rpm
+rpm -ivh http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-24.noarch.rpm
+
 
 # Harden sshd options
 echo "" > /etc/ssh/sshd_config
