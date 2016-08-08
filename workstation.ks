@@ -117,6 +117,7 @@ strace
 wireshark
 ffmpeg
 gvfs-mtp
+figlet
 %end
 
 # Post-installation Script
