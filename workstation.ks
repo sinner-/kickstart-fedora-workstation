@@ -118,6 +118,7 @@ wireshark
 ffmpeg
 gvfs-mtp
 figlet
+system-config-printer
 %end
 
 # Post-installation Script
