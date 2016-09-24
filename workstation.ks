@@ -119,6 +119,17 @@ ffmpeg
 gvfs-mtp
 figlet
 system-config-printer
+gcc-c++
+readline-devel
+gcc-gfortran
+libX11-devel
+libXt-devel
+zlib-devel
+bzip2-devel
+lzma-devel
+xz-devel
+pcre-devel
+libcurl-devel
 %end
 
 # Post-installation Script
