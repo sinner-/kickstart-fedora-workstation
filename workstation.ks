@@ -119,6 +119,7 @@ ffmpeg
 gvfs-mtp
 figlet
 system-config-printer
+git-review
 gcc-c++
 readline-devel
 gcc-gfortran
