@@ -131,6 +131,7 @@ lzma-devel
 xz-devel
 pcre-devel
 libcurl-devel
+python-virtualenvwrapper
 %end
 
 # Post-installation Script
@@ -160,6 +161,13 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set nohlsearch" > /home/sina/.vimrc
+
+cat <<EOF >> /home/sina/.bashrc
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+source /usr/bin/virtualenvwrapper.sh
+EOF
 
 # Enable services
 systemctl enable noip.service
