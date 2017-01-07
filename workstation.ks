@@ -57,7 +57,7 @@ auth --passalgo=sha512
 
 # Create User Account
 # https://docs.fedoraproject.org/en-US/Fedora/24/html/Installation_Guide/sect-kickstart-commands-user.html
-user --name=sina --password=password --plaintext --groups=wheel
+user --name=sina --password=userpassword --plaintext --groups=wheel
 
 # Set Root Password
 # https://docs.fedoraproject.org/en-US/Fedora/24/html/Installation_Guide/sect-kickstart-commands-rootpw.html
