@@ -133,6 +133,7 @@ pcre-devel
 libcurl-devel
 python-virtualenvwrapper
 deluge
+golang
 %end
 
 # Post-installation Script
@@ -162,11 +163,13 @@ set shiftwidth=4
 set expandtab
 set nohlsearch" > /home/sina/.vimrc
 
-cat <<EOF >> /home/sina/.bashrc
+cat <<EOF > /home/sina/.bashrc
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 source /usr/bin/virtualenvwrapper.sh
+export GOPATH=/home/sina/Development/go
+export PATH=$PATH:/home/sina/Development/go/bin
 EOF
 
 # Enable services
