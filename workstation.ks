@@ -134,6 +134,10 @@ libcurl-devel
 python-virtualenvwrapper
 deluge
 golang
+libimobiledevice
+libimobiledevice-utils
+usbmuxd
+ifuse
 %end
 
 # Post-installation Script
@@ -174,6 +178,7 @@ EOF
 
 # Enable services
 systemctl enable noip.service
+systemctl enable usbmuxd
 
 # Disable services
 systemctl disable bluetooth.service
