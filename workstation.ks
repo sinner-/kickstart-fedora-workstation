@@ -3,10 +3,10 @@
 install
 url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-24&arch=x86_64"
 repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f24&arch=x86_64" --cost=100
-repo --name=rpmfusion-free --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-24&arch=x86_64" --includepkgs=rpmfusion-free-release
-repo --name=rpmfusion-free-updates --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-24&arch=x86_64" --includepkgs=rpmfusion-free-release
-repo --name=rpmfusion-nonfree --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-24&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
-repo --name=rpmfusion-nonfree-updates --mirrorlist="http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-24&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
+repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-24&arch=x86_64" --includepkgs=rpmfusion-free-release
+repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-24&arch=x86_64" --includepkgs=rpmfusion-free-release
+repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-24&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
+repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-24&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
 repo --name=google-chrome --baseurl="http://dl.google.com/linux/chrome/rpm/stable/x86_64"
 
 # zerombr
@@ -174,6 +174,7 @@ fi
 source /usr/bin/virtualenvwrapper.sh
 export GOPATH=/home/sina/Development/go
 export PATH=$PATH:/home/sina/Development/go/bin
+alias irssi='firejail irssi'
 EOF
 
 # Enable services
