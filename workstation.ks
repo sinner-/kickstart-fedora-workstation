@@ -169,6 +169,13 @@ export PATH=$PATH:/home/sina/Development/go/bin
 alias irssi='firejail irssi'
 EOF
 
+# Disable IPv6
+cat <<EOF >> /etc/sysctl.conf
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+EOF
+
 # Enable services
 systemctl enable usbmuxd
 
