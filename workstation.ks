@@ -20,8 +20,8 @@ bootloader --location=mbr --driveorder=sda
 # Create Physical Partition
 # https://docs.fedoraproject.org/en-US/Fedora/26/html/Installation_Guide/sect-kickstart-commands-part.html
 part /boot --size=512 --asprimary --ondrive=sda --fstype=xfs
-part swap --grow --ondrive=sda --encrypted --passphrase=fdepassphrase
-part / --grow --asprimary --ondrive=sda --fstype=xfs --encrypted --passphrase=fdepassphrase
+part swap --size=10240 --ondrive=sda --encrypted --passphrase=fdepassphrase
+part / --size=8192 --grow --asprimary --ondrive=sda --fstype=xfs --encrypted --passphrase=fdepassphrase
 
 # Remove all existing partitions
 # https://docs.fedoraproject.org/en-US/Fedora/26/html/Installation_Guide/sect-kickstart-commands-clearpart.html
