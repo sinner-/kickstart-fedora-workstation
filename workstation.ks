@@ -70,6 +70,7 @@ text
 # Package Selection
 # https://docs.fedoraproject.org/en-US/Fedora/26/html/Installation_Guide/sect-kickstart-packages.html
 %packages
+-bluez
 @core
 @standard
 @hardware-support
