@@ -130,6 +130,7 @@ usbmuxd
 ifuse
 mariadb-server
 transmission-gtk
+libffi-devel
 %end
 
 # Post-installation Script
