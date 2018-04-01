@@ -1,13 +1,13 @@
-# https://docs.fedoraproject.org/f26/install-guide/appendixes/Kickstart_Syntax_Reference.html
+# https://docs.fedoraproject.org/f27/install-guide/appendixes/Kickstart_Syntax_Reference.html
 
 # Configure installation method
 install
-url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-26&arch=x86_64"
-repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f26&arch=x86_64" --cost=100
-repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-26&arch=x86_64" --includepkgs=rpmfusion-free-release
-repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-26&arch=x86_64" --includepkgs=rpmfusion-free-release
-repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-26&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
-repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-26&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
+url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-27&arch=x86_64"
+repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f27&arch=x86_64" --cost=100
+repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-27&arch=x86_64" --includepkgs=rpmfusion-free-release
+repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-27&arch=x86_64" --includepkgs=rpmfusion-free-release
+repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-27&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
+repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-27&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
 repo --name=google-chrome --baseurl="http://dl.google.com/linux/chrome/rpm/stable/x86_64"
 
 # zerombr
@@ -18,8 +18,8 @@ bootloader --location=mbr --driveorder=sda
 
 # Create Physical Partition
 part /boot --size=512 --asprimary --ondrive=sda --fstype=xfs
-part swap --size=10240 --ondrive=sda --encrypted --passphrase=fdepassphrase
-part / --size=8192 --grow --asprimary --ondrive=sda --fstype=xfs --encrypted --passphrase=fdepassphrase
+part swap --size=10240 --ondrive=sda $fdepass
+part / --size=8192 --grow --asprimary --ondrive=sda --fstype=xfs $fdepass
 
 # Remove all existing partitions
 clearpart --all --drives=sda
@@ -46,7 +46,7 @@ timezone Australia/Sydney
 auth --passalgo=sha512
 
 # Create User Account
-user --name=sina --password=userpassword --plaintext --groups=wheel
+user --name=sina --password=$userpass --iscrypted --groups=wheel
 
 # Set Root Password
 rootpw --lock
@@ -132,8 +132,8 @@ gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
 rpm --import https://dl-ssl.google.com/linux/linux_signing_key.pub
 
-rpm -ivh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-26.noarch.rpm
-rpm -ivh http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-26.noarch.rpm
+rpm -ivh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm
+rpm -ivh http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-27.noarch.rpm
 
 # Harden sshd options
 echo "" > /etc/ssh/sshd_config
@@ -147,7 +147,7 @@ set nohlsearch" > /home/sina/.vimrc
 
 cat <<EOF > /home/sina/.bashrc
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+  . /etc/bashrc
 fi
 source /usr/bin/virtualenvwrapper.sh
 export GOPATH=/home/sina/Development/go
