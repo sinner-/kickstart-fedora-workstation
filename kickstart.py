@@ -32,7 +32,7 @@ if not fdepass_input:
   print('Proceeding without FDE!')
   fdepass = ''
 else:
-  fdepass = '--encrypted --passphrase=%s' % fdepass_input
+  fdepass = '--encrypted --passphrase="%s"' % fdepass_input
 
 userpass = crypt.crypt(userpass_input, crypt.mksalt())
 
