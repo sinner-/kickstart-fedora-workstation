@@ -3,12 +3,11 @@
 # Configure installation method
 install
 url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-27&arch=x86_64"
-repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f27&arch=x86_64" --cost=100
-repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-27&arch=x86_64" --includepkgs=rpmfusion-free-release
-repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-27&arch=x86_64" --includepkgs=rpmfusion-free-release
-repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-27&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
-repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-27&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
-repo --name=google-chrome --baseurl="http://dl.google.com/linux/chrome/rpm/stable/x86_64"
+repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f27&arch=x86_64" --cost=0 --install
+repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-27&arch=x86_64" --includepkgs=rpmfusion-free-release --install
+repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-27&arch=x86_64" --includepkgs=rpmfusion-free-release --install
+repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-27&arch=x86_64" --includepkgs=rpmfusion-nonfree-release --install
+repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-27&arch=x86_64" --includepkgs=rpmfusion-nonfree-release --install
 
 # zerombr
 zerombr
@@ -57,6 +56,7 @@ text
 # Package Selection
 %packages
 -bluez
+-blueberry
 @core
 @standard
 @hardware-support
@@ -83,7 +83,6 @@ tcpdump
 ansible
 thunderbird
 vlc
-google-chrome-stable
 calc
 gitflow
 gstreamer-plugins-ugly
@@ -121,7 +120,7 @@ libffi-devel
 
 # Post-installation Script
 %post
-# Persist extra repos and import keys.
+# Install Google Chrome
 cat << EOF > /etc/yum.repos.d/google-chrome.repo
 [google-chrome]
 name=google-chrome
@@ -131,9 +130,7 @@ gpgcheck=1
 gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
 rpm --import https://dl-ssl.google.com/linux/linux_signing_key.pub
-
-rpm -ivh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm
-rpm -ivh http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-27.noarch.rpm
+dnf install -y google-chrome-stable
 
 # Harden sshd options
 echo "" > /etc/ssh/sshd_config
@@ -170,7 +167,7 @@ systemctl disable gssproxy
 systemctl disable sssd
 systemctl disable bluetooth.target
 systemctl disable avahi-daemon
-systemctl disable abrtd 
+systemctl disable abrtd
 systemctl disable abrt-ccpp
 systemctl disable mlocate-updatedb
 systemctl disable mlocate-updatedb.timer
