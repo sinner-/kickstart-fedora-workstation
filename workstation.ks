@@ -118,6 +118,7 @@ mariadb-server
 transmission-gtk
 libffi-devel
 evince
+sqlite
 %end
 
 # Post-installation Script
