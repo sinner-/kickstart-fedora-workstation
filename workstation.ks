@@ -58,6 +58,7 @@ text
 -bluez
 -blueberry
 -dnfdragora
+-gssproxy
 @core
 @standard
 @hardware-support
@@ -119,6 +120,8 @@ transmission-gtk
 libffi-devel
 evince
 sqlite
+exfat-utils
+fuse-exfat
 %end
 
 # Post-installation Script
@@ -166,7 +169,6 @@ EOF
 systemctl enable usbmuxd
 
 # Disable services
-systemctl disable gssproxy
 systemctl disable sssd
 systemctl disable bluetooth.target
 systemctl disable avahi-daemon
