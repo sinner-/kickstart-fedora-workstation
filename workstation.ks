@@ -122,6 +122,7 @@ evince
 sqlite
 exfat-utils
 fuse-exfat
+jq
 %end
 
 # Post-installation Script
