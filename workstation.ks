@@ -123,6 +123,7 @@ sqlite
 exfat-utils
 fuse-exfat
 jq
+nodejs
 %end
 
 # Post-installation Script
