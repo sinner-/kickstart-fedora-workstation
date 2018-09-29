@@ -124,6 +124,7 @@ exfat-utils
 fuse-exfat
 jq
 nodejs
+icedtea-web
 %end
 
 # Post-installation Script
