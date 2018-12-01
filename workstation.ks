@@ -1,13 +1,13 @@
-# https://docs.fedoraproject.org/f28/install-guide/appendixes/Kickstart_Syntax_Reference.html
+# https://docs.fedoraproject.org/en-US/fedora/f29/install-guide/appendixes/Kickstart_Syntax_Reference/
 
 # Configure installation method
 install
-url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-28&arch=x86_64"
-repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f28&arch=x86_64" --cost=0
-repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-28&arch=x86_64" --includepkgs=rpmfusion-free-release
-repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-28&arch=x86_64" --cost=0
-repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-28&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
-repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-28&arch=x86_64" --cost=0
+url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-29&arch=x86_64"
+repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f29&arch=x86_64" --cost=0
+repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-29&arch=x86_64" --includepkgs=rpmfusion-free-release
+repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-29&arch=x86_64" --cost=0
+repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-29&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
+repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-29&arch=x86_64" --cost=0
 
 # zerombr
 zerombr
@@ -41,9 +41,6 @@ xconfig --startxonboot
 # Configure Time Zone
 timezone Australia/Sydney
 
-# Configure Authentication
-auth --passalgo=sha512
-
 # Create User Account
 user --name=sina --password=$userpass --iscrypted --groups=wheel
 
@@ -55,10 +52,6 @@ text
 
 # Package Selection
 %packages
--bluez
--blueberry
--dnfdragora
--gssproxy
 @core
 @standard
 @hardware-support
@@ -125,6 +118,7 @@ fuse-exfat
 jq
 nodejs
 icedtea-web
+ristretto
 %end
 
 # Post-installation Script
@@ -179,6 +173,11 @@ systemctl disable abrtd
 systemctl disable abrt-ccpp
 systemctl disable mlocate-updatedb
 systemctl disable mlocate-updatedb.timer
+systemctl disable gssproxy
+systemctl disable bluetooth
+systemctl disable geoclue
+systemctl disable ModemManager
+sed -i 's/Disabled=false/Disabled=true/g' /etc/xdg/tumbler/tumbler.rc
 %end
 
 # Reboot After Installation
