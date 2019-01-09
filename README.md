@@ -39,6 +39,6 @@ Designed to:
 * Install Fedora Workstation netinst to a usb with `dd if=netinst.iso of=/dev/sdx bs=1M oflag=sync status=progress`.
 * Boot Fedora Workstation netinst on the target install machine.
 * At the boot screen, press UP to select the "install without verify" option and then TAB.
-* Append the kickstart directive to the end of the boot string:
+* Insert the kickstart directive into the the boot string **before** the `quiet` directive.:
   * `inst.ks=http://<WEB_SERVER_IP>:<PORT>/workstation.ks`
 * Hit ENTER. Install will begin and complete without any further prompt.
