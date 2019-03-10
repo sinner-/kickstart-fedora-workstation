@@ -119,6 +119,7 @@ jq
 nodejs
 icedtea-web
 ristretto
+argon2
 %end
 
 # Post-installation Script
