@@ -118,6 +118,7 @@ nodejs
 icedtea-web
 ristretto
 argon2
+xournal
 %end
 
 # Post-installation Script
