@@ -37,7 +37,7 @@ keyboard us
 lang en_AU
 
 # Services to enable/disable
-services --disabled=mlocate-updatedb,mlocate-updatedb.timer,bluetooth,bluetooth.target,geoclue
+services --disabled=mlocate-updatedb,mlocate-updatedb.timer,bluetooth,bluetooth.target,geoclue,avahi-daemon
 
 # Configure Time Zone
 timezone Australia/Sydney
@@ -59,8 +59,6 @@ text
 -openssh-server
 -gssproxy
 -nfs-utils
--avahi
--nss-mdns
 -sssd*
 -abrt*
 @core
