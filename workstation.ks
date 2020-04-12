@@ -75,7 +75,7 @@ text
 @development-tools
 vim
 NetworkManager-openvpn-gnome
-keepassx
+keepassxc
 redshift-gtk
 google-chrome-stable
 gimp
