@@ -125,6 +125,7 @@ xournal
 pykickstart
 evince
 firejail
+ShellCheck
 %end
 
 # Post-installation Script
