@@ -126,6 +126,8 @@ pykickstart
 evince
 firejail
 ShellCheck
+geteltorito
+genisoimage
 %end
 
 # Post-installation Script
