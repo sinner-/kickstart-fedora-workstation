@@ -1,28 +1,29 @@
-# https://docs.fedoraproject.org/en-US/fedora/f33/install-guide/appendixes/Kickstart_Syntax_Reference/
+# https://docs.fedoraproject.org/en-US/fedora/f34/install-guide/appendixes/Kickstart_Syntax_Reference/
 
 # Configure installation method
-install
-url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-33&arch=x86_64"
-repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f33&arch=x86_64" --cost=0
-repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-33&arch=x86_64" --includepkgs=rpmfusion-free-release
-repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-33&arch=x86_64" --cost=0
-repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-33&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
-repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-33&arch=x86_64" --cost=0
+url --mirrorlist="https://mirrors.fedoraproject.org/metalink?repo=fedora-34&arch=x86_64"
+repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f34&arch=x86_64" --cost=0
+repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-34&arch=x86_64" --includepkgs=rpmfusion-free-release
+repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-34&arch=x86_64" --cost=0
+repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-34&arch=x86_64" --includepkgs=rpmfusion-nonfree-release
+repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-34&arch=x86_64" --cost=0
 repo --name=google-chrome --install --baseurl="https://dl.google.com/linux/chrome/rpm/stable/x86_64" --cost=0
 
 # Configure Boot Loader
-bootloader --location=mbr --driveorder=sda
+bootloader --driveorder=sda
 
 # Remove all existing partitions
-clearpart --all --drives=sda
-
-# Create Physical Partition
-part /boot --size=512 --asprimary --ondrive=sda --fstype=xfs
-part swap --size=10240 --ondrive=sda $fdepass
-part / --size=8192 --grow --asprimary --ondrive=sda --fstype=xfs $fdepass
+clearpart --drives=sda --all
 
 # zerombr
 zerombr
+
+#Create required partitions (BIOS boot partition and /boot)
+reqpart --add-boot
+
+# Create Physical Partition
+part swap --size=10240 --ondrive=sda $fdepass
+part / --size=8192 --grow --asprimary --ondrive=sda --fstype=xfs $fdepass
 
 # Configure Firewall
 firewall --enabled
@@ -37,7 +38,7 @@ keyboard us
 lang en_AU
 
 # Services to enable/disable
-services --disabled=mlocate-updatedb,mlocate-updatedb.timer,bluetooth,bluetooth.target,geoclue,avahi-daemon
+services --disabled=mlocate-updatedb,mlocate-updatedb.timer,geoclue,avahi-daemon
 
 # Configure Time Zone
 timezone Australia/Sydney
@@ -132,12 +133,6 @@ genisoimage
 
 # Post-installation Script
 %post
-# Disable IPv6
-cat <<EOF >> /etc/sysctl.conf
-net.ipv6.conf.all.disable_ipv6 = 1
-net.ipv6.conf.default.disable_ipv6 = 1
-net.ipv6.conf.lo.disable_ipv6 = 1
-EOF
 
 #Enable GPG keys for installed repos
 cat <<EOF >> /etc/yum.repos.d/google-chrome.repo
