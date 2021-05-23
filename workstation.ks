@@ -107,7 +107,7 @@ libXt-devel
 zlib-devel
 bzip2-devel
 xz-devel
-pcre-devel
+pcre2-devel
 libcurl-devel
 python3-virtualenvwrapper
 python3-devel
