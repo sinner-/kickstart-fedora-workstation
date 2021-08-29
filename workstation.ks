@@ -129,6 +129,7 @@ firejail
 ShellCheck
 geteltorito
 genisoimage
+openssl
 %end
 
 # Post-installation Script
