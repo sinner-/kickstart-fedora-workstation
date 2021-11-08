@@ -2,7 +2,7 @@
 
 Bringing you a clean Fedora installation since F23.
 
-Tested as working on Fedora 34.
+Tested as working on Fedora 35.
 
 ### Overview
 
@@ -36,8 +36,8 @@ Designed to:
   * `sed -i 's/^timezone/timezone Yourcountry\/Yourcity/' workstation.ks`.
 * Run the kickstart.py script which will ask you for the user password and FDE passphrase and then launch a HTTP server:
   * `python3 kickstart.py`
-* Install Fedora Workstation netinst to a usb with `dd if=netinst.iso of=/dev/sdx bs=1M oflag=sync status=progress`.
-* Boot Fedora Workstation netinst on the target install machine.
+* Install Fedora Server netinst to a usb with `dd if=netinst.iso of=/dev/sdx bs=1M oflag=sync status=progress`.
+* Boot Fedora Server netinst on the target install machine.
 * At the boot screen, press UP to select the "install without verify" option and then TAB.
 * Insert the kickstart directive into the the boot string **before** the `quiet` directive.:
   * `inst.ks=http://<WEB_SERVER_IP>:<PORT>/workstation.ks`
