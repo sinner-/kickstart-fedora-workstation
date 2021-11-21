@@ -81,7 +81,7 @@ redshift-gtk
 google-chrome-stable
 gimp
 gnucash
-duplicity
+restic
 calibre
 irssi
 nmap
