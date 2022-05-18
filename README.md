@@ -2,7 +2,7 @@
 
 Bringing you a clean Fedora installation since F23.
 
-Tested as working on Fedora 35.
+Tested as working on Fedora 36.
 
 ### Overview
 
@@ -20,7 +20,7 @@ Designed to:
 ### Requirements
 * This README assumes installation to a device with:
   * An internet connected ethernet port.
-  * At least 15GB of HDD.
+  * At least 40GB of HDD.
   * A webserver to host this kickstart file once it is configured.
 * For machines with no eth port, use `livecd-iso-to-disk` then add the ks file to the USB.
   * https://github.com/rhinstaller/livecd-tools/blob/master/tools/livecd-iso-to-disk.sh
