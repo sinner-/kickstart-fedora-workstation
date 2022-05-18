@@ -2,7 +2,7 @@
 import http.server
 import socketserver
 import getpass
-import crypt
+import subprocess
 from io import BytesIO
 from string import Template
 
@@ -22,23 +22,16 @@ class KickstartHandler(http.server.SimpleHTTPRequestHandler):
       self.send_response(404)
       self.end_headers()
 
-userpass_input = getpass.getpass('User password:')
-if not userpass_input:
+userpass_input = subprocess.run(["mkpasswd"], capture_output=True, text=True)
+if userpass_input.returncode != 0 or not userpass_input or not userpass_input.stdout:
   print('You must enter a user password.')
   exit(1)
 
-fdepass_input = getpass.getpass('FDE passphrase:')
-if not fdepass_input:
-  print('Proceeding without FDE!')
-  fdepass = ''
-else:
-  fdepass = '--encrypted --passphrase="%s"' % fdepass_input
-
-userpass = crypt.crypt(userpass_input, crypt.mksalt())
+userpass = userpass_input.stdout.rstrip('\n')
 
 with open(KICKSTART_FILE, 'r') as f:
   t = Template(f.read())
-  body = t.safe_substitute(userpass=userpass, fdepass=fdepass)
+  body = t.safe_substitute(userpass=userpass)
 
 with socketserver.TCPServer((LISTEN_ADDR, LISTEN_PORT), KickstartHandler) as httpd:
   print('Serving kickstart file on http://%s:%d.' % (LISTEN_ADDR, LISTEN_PORT))

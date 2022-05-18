@@ -22,8 +22,8 @@ zerombr
 reqpart --add-boot
 
 # Create Physical Partition
-part swap --size=10240 --ondrive=sda $fdepass
-part / --size=8192 --grow --asprimary --ondrive=sda --fstype=xfs $fdepass
+part swap --size=10240 --ondrive=sda --encrypted
+part / --size=8192 --grow --asprimary --ondrive=sda --fstype=xfs --encrypted
 
 # Configure Firewall
 firewall --enabled
