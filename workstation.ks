@@ -22,8 +22,10 @@ zerombr
 reqpart --add-boot
 
 # Create Physical Partition
-part swap --size=10240 --ondrive=sda --encrypted
-part / --size=8192 --grow --asprimary --ondrive=sda --fstype=xfs --encrypted
+part pv.01 --ondrive=sda --asprimary --size=40000 --grow --encrypted
+volgroup vg pv.01
+logvol swap --hibernation --vgname=vg --name=swap
+logvol / --vgname=vg --name=fedora-root --size=25000 --grow --fstype=xfs
 
 # Configure Firewall
 firewall --enabled
