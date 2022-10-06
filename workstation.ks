@@ -128,6 +128,7 @@ ShellCheck
 geteltorito
 genisoimage
 openssl
+qrencode
 %end
 
 # Post-installation Script
