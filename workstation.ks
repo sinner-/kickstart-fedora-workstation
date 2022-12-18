@@ -129,6 +129,7 @@ geteltorito
 genisoimage
 openssl
 qrencode
+xrandr
 %end
 
 # Post-installation Script
