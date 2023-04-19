@@ -130,6 +130,7 @@ genisoimage
 openssl
 qrencode
 xrandr
+pinta
 %end
 
 # Post-installation Script
