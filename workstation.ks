@@ -1,12 +1,12 @@
-# https://docs.fedoraproject.org/en-US/fedora/f37/install-guide/appendixes/Kickstart_Syntax_Reference/
+# https://docs.fedoraproject.org/en-US/fedora/f38/install-guide/appendixes/Kickstart_Syntax_Reference/
 
 # Configure installation method
-url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-37&arch=x86_64"
-repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f37&arch=x86_64" --cost=0
-repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-37&arch=x86_64"
-repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-37&arch=x86_64" --cost=0
-repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-37&arch=x86_64"
-repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-37&arch=x86_64" --cost=0
+url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-38&arch=x86_64"
+repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f38&arch=x86_64" --cost=0
+repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-38&arch=x86_64"
+repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-38&arch=x86_64" --cost=0
+repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-38&arch=x86_64"
+repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-38&arch=x86_64" --cost=0
 repo --name=google-chrome --install --baseurl="https://dl.google.com/linux/chrome/rpm/stable/x86_64" --cost=0
 
 # Configure Boot Loader
@@ -125,7 +125,6 @@ pykickstart
 evince
 firejail
 ShellCheck
-geteltorito
 genisoimage
 openssl
 qrencode

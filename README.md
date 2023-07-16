@@ -2,7 +2,7 @@
 
 Bringing you a clean Fedora installation since F23.
 
-Tested as working on Fedora 37.
+Tested as working on Fedora 38.
 
 ### Overview
 
