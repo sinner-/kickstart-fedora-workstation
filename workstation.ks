@@ -129,6 +129,7 @@ openssl
 qrencode
 xrandr
 pinta
+ipython
 %end
 
 # Post-installation Script
