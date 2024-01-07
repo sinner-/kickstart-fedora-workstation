@@ -1,12 +1,12 @@
-# https://docs.fedoraproject.org/en-US/fedora/f38/install-guide/appendixes/Kickstart_Syntax_Reference/
 
 # Configure installation method
-url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-38&arch=x86_64"
-repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f38&arch=x86_64" --cost=0
-repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-38&arch=x86_64"
-repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-38&arch=x86_64" --cost=0
-repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-38&arch=x86_64"
-repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-38&arch=x86_64" --cost=0
+url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-39&arch=x86_64"
+repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f39&arch=x86_64" --cost=0
+repo --name=fedora-cisco-openh264 --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-cisco-openh264-39&arch=x86_64" --install
+repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-39&arch=x86_64"
+repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-39&arch=x86_64" --cost=0
+repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-39&arch=x86_64"
+repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-39&arch=x86_64" --cost=0
 repo --name=google-chrome --install --baseurl="https://dl.google.com/linux/chrome/rpm/stable/x86_64" --cost=0
 
 # Configure Boot Loader
@@ -28,7 +28,7 @@ logvol swap --hibernation --vgname=vg --name=swap
 logvol / --vgname=vg --name=fedora-root --size=25000 --grow --fstype=xfs
 
 # Configure Firewall
-firewall --enabled
+firewall --enabled --port=51413:tcp,8000:tcp
 
 # Configure Network Interfaces
 network --onboot=yes --bootproto=dhcp --hostname=sina-laptop
@@ -100,7 +100,6 @@ strace
 wireshark
 ffmpeg
 system-config-printer
-git-review
 gcc-c++
 readline-devel
 gcc-gfortran
