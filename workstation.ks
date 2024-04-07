@@ -54,6 +54,9 @@ rootpw --lock
 # Create User Account
 user --name=sina --password=$userpass --iscrypted --groups=wheel
 
+# Configure faillock
+authselect enable-feature with-faillock
+
 # Perform Installation in Text Mode
 text
 
