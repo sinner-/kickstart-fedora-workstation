@@ -2,11 +2,11 @@
 
 Bringing you a clean Fedora installation since Fedora 23.
 
-Tested as working on Fedora 39.
+Tested as working on Fedora 40.
 
 As of Fedora 37, the Kickstart Configuration Reference is no longer visible on Fedora Docs, including this Fedora 36 link for reference.
 
-[F36 Kickstart Configuration Reference](https://docs.fedoraproject.org/en-US/fedora/f36/install-guide/appendixes/Kickstart_Syntax_Reference/#sect-kickstart-commands-repo)
+[pykickstart docs (including Configuration Reference](https://pykickstart.readthedocs.io/en/latest/kickstart-docs.html)
 
 ### Overview
 
