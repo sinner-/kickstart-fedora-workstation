@@ -9,10 +9,10 @@ repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.or
 repo --name=google-chrome --install --baseurl="https://dl.google.com/linux/chrome/rpm/stable/x86_64" --cost=0
 
 # Configure Boot Loader
-bootloader --driveorder=sda
+bootloader --driveorder=nvme0n1
 
 # Remove all existing partitions
-clearpart --drives=sda --all
+clearpart --drives=nvme0n1 --all
 
 # zerombr
 zerombr
@@ -21,7 +21,7 @@ zerombr
 reqpart --add-boot
 
 # Create Physical Partition
-part pv.01 --ondrive=sda --asprimary --size=40000 --grow --encrypted
+part pv.01 --ondrive=nvme0n1 --asprimary --size=40000 --grow --encrypted
 volgroup vg pv.01
 logvol swap --hibernation --vgname=vg --name=swap
 logvol / --vgname=vg --name=fedora-root --size=25000 --grow --fstype=xfs
@@ -87,6 +87,7 @@ tcpdump
 wireshark
 openssl
 firejail
+wireguard-tools
 
 #Dev
 vim
@@ -125,7 +126,6 @@ rpmfusion-free-release
 rpmfusion-nonfree-release
 redshift-gtk
 system-config-printer
-NetworkManager-openvpn-gnome
 xrandr
 
 #Office
