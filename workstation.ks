@@ -153,6 +153,19 @@ cat <<EOF >> /etc/yum.repos.d/google-chrome.repo
 gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
 
+cat <<EOF > /etc/systemd/resolved.conf
+[Resolve]
+DNS=10.8.0.1
+FallbackDNS=1.1.1.1 1.1.1.2
+DNSOverTLS=opportunistic
+EOF
+
+cat <<EOF > /etc/NetworkManager/conf.d/dns.conf
+[main]
+dns=none
+systemd-resolved=false
+EOF
+
 %end
 
 # Reboot After Installation
