@@ -127,6 +127,7 @@ rpmfusion-nonfree-release
 redshift-gtk
 system-config-printer
 xrandr
+tlp
 
 #Office
 google-chrome-stable
