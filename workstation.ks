@@ -152,6 +152,7 @@ pinta
 #Enable GPG keys for installed repos
 cat <<EOF >> /etc/yum.repos.d/google-chrome.repo
 gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+gpgcheck=1
 EOF
 
 cat <<EOF > /etc/systemd/resolved.conf
