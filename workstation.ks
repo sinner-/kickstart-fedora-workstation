@@ -121,6 +121,7 @@ sqlite
 #Usability
 rpmfusion-free-release
 rpmfusion-nonfree-release
+elementary-xfce-icon-theme
 redshift-gtk
 system-config-printer
 xrandr
