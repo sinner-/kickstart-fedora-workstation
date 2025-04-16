@@ -1,18 +1,15 @@
 # Configure installation method
-url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-41&arch=x86_64"
-repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f41&arch=x86_64" --cost=0
-repo --name=fedora-cisco-openh264 --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-cisco-openh264-41&arch=x86_64" --install
-repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-41&arch=x86_64"
-repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-41&arch=x86_64" --cost=0
-repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-41&arch=x86_64"
-repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-41&arch=x86_64" --cost=0
+url --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-42&arch=x86_64"
+repo --name=fedora-updates --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f42&arch=x86_64" --cost=0
+repo --name=fedora-cisco-openh264 --mirrorlist="https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-cisco-openh264-42&arch=x86_64" --install
+repo --name=rpmfusion-free --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-42&arch=x86_64"
+repo --name=rpmfusion-free-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-42&arch=x86_64" --cost=0
+repo --name=rpmfusion-nonfree --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-42&arch=x86_64"
+repo --name=rpmfusion-nonfree-updates --mirrorlist="https://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-42&arch=x86_64" --cost=0
 repo --name=google-chrome --install --baseurl="https://dl.google.com/linux/chrome/rpm/stable/x86_64" --cost=0
 
-# Configure Boot Loader
-bootloader --driveorder=nvme0n1
-
 # Remove all existing partitions
-clearpart --drives=nvme0n1 --all
+clearpart --all
 
 # zerombr
 zerombr
@@ -21,13 +18,13 @@ zerombr
 reqpart --add-boot
 
 # Create Physical Partition
-part pv.01 --ondrive=nvme0n1 --asprimary --size=40000 --grow --encrypted
+part pv.01 --asprimary --size=40000 --grow --encrypted
 volgroup vg pv.01
 logvol swap --hibernation --vgname=vg --name=swap
-logvol / --vgname=vg --name=fedora-root --size=25000 --grow --fstype=xfs
+logvol / --vgname=vg --name=fedora-root --size=25000 --grow --fstype=ext4
 
 # Configure Firewall
-firewall --enabled --port=51413:tcp,8000:tcp
+firewall --enabled
 
 # Configure Network Interfaces
 network --onboot=yes --bootproto=dhcp --hostname=sina-laptop
