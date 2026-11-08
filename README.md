@@ -2,7 +2,7 @@
 
 Bringing you a clean Fedora installation since Fedora 23.
 
-Tested as working on Fedora 43.
+Tested as working on Fedora 45.
 
 [pykickstart docs (including Configuration Reference](https://pykickstart.readthedocs.io/en/latest/kickstart-docs.html)
 
