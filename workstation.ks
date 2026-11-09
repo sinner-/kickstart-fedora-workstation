@@ -36,10 +36,10 @@ keyboard us
 lang en_AU
 
 # Services to enable/disable
-services --disabled=mlocate-updatedb,mlocate-updatedb.timer,geoclue,avahi-daemon
+services --enabled=chronyd --disabled=mlocate-updatedb,mlocate-updatedb.timer,geoclue,avahi-daemon,systemd-timesyncd
 
 # Configure Time Zone
-timezone Australia/Sydney
+timezone Australia/Sydney --utc
 
 # Configure X Window System
 xconfig --startxonboot
@@ -74,6 +74,7 @@ text
 @printing
 @xfce-desktop
 xfce4-sensors-plugin
+chrony
 @development-tools
 
 #Security
@@ -148,6 +149,15 @@ evince
 cat <<EOF >> /etc/yum.repos.d/google-chrome.repo
 gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 gpgcheck=1
+EOF
+
+cat <<EOF > /etc/chrony.conf
+server 162.159.200.1 iburst
+server 162.159.200.123 iburst
+driftfile /var/lib/chrony/drift
+makestep 1.0 3
+rtcsync
+leapseclist /usr/share/zoneinfo/leap-seconds.list
 EOF
 
 cat <<EOF > /etc/systemd/resolved.conf
